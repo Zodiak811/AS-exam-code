@@ -2,7 +2,7 @@ name: ej1-workflow
 on:
   push:
     branches:
-      -main
+      - main
 
 jobs:
   tareas:
