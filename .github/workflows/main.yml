@@ -1,0 +1,32 @@
+name: ej1-workflow
+on:
+  push:
+    branches:
+      -main
+
+jobs:
+  tareas:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Bajar código
+        uses: actions/checkout@v4
+
+      - name: Configurar entorno Node version 18
+        uses: actions/setup-node@v4
+        with:
+          node-version : 18
+
+      - name: Ejecutar código npm i
+        run: npm i
+
+      - name: Ejecutar código npm test
+        run: npm test
+
+      - name: Construir imagen docker-compose
+        uses: cloudposse/github-action-docker-compose-test-run@main
+        with:
+          file: .docker-compose.yml
+          service: app
+      
+        
